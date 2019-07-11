@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-
+        <activity android:name=".DetailsActivity"></activity>
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -26,7 +25,7 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity android:name=".PostActivity"></activity>
+        <activity android:name=".PostActivity" />
         <activity android:name=".TimelineActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

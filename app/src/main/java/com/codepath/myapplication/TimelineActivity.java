@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.codepath.myapplication.model.Post;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -27,6 +29,7 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvPosts;
     private SwipeRefreshLayout swipeContainer;
     // private EndlessRecyclerViewScrollListener scrollListener;
+    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -35,6 +38,7 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         rvPosts = (RecyclerView) findViewById(R.id.rvPosts);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         posts = new ArrayList<>();
         postAdapter = new PostAdapter(posts);
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
@@ -55,6 +59,23 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_timeline:
+                        return true;
+                    case R.id.action_compose:
+                        // do something here
+                        return true;
+                    case R.id.action_profile:
+                        // do something here
+                        return true;
+                    default: return true;
+                }
+            }
+        });
 
     }
 
