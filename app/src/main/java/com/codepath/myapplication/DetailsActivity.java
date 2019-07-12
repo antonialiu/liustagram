@@ -69,6 +69,10 @@ public class DetailsActivity extends AppCompatActivity {
             relativeDate = relativeDate.split("e")[0];
         }
 
+        if (relativeDate.contains("day")) {
+            relativeDate = relativeDate.split("a")[0];
+        }
+
         return relativeDate;
     }
 

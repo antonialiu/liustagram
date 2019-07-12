@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bLogout"
         android:onClick="onLogoutClick"
+        android:id="@+id/bLogout"
         android:title="LOGOUT"
         app:showAsAction="ifRoom" />
 

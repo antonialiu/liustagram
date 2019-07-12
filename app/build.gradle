@@ -60,4 +60,7 @@ dependencies {
 
     implementation "com.android.support:percent:${supportLibVersion}"
 
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
 }

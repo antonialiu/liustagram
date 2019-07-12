@@ -22,48 +22,32 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+public class ProfilePostAdapter extends RecyclerView.Adapter<ProfilePostAdapter.ViewHolder> {
 
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private static List<Post> posts;
     static Context context;
 
-    public PostAdapter(List<Post> postList) {
+    public ProfilePostAdapter(List<Post> postList) {
         posts = postList;
     }
 
     @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ProfilePostAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View postView = inflater.inflate(R.layout.item_post, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(postView);
+        View postView = inflater.inflate(R.layout.item_profile_posts, viewGroup, false);
+        ProfilePostAdapter.ViewHolder viewHolder = new ProfilePostAdapter.ViewHolder(postView);
         return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(ProfilePostAdapter.ViewHolder viewHolder, int i) {
         Post post = posts.get(i);
 
-
-        viewHolder.tvUsername.setText(post.getUser().getUsername());
-        viewHolder.tvDescription.setText(post.getDescription());
         Glide.with(context)
                 .load(post.getImage().getUrl())
                 .into(viewHolder.ivPost);
-        if (post.getPropic() != null) {
-            Glide.with(context)
-                    .load(post.getPropic().getUrl())
-                    .placeholder(R.drawable.empty_profile)
-                    .into(viewHolder.ivPropic);
-        }
-        else {
-            Glide.with(context)
-                    .load(R.drawable.empty_profile)
-                    .into(viewHolder.ivPropic);
-        }
     }
 
     @Override
@@ -100,18 +84,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView tvUsername;
-        public TextView tvDescription;
         public ImageView ivPost;
-        public ImageView ivPropic;
+        public TextView tvUsername;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
-            tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
-            ivPost = (ImageView) itemView.findViewById(R.id.ivPost);
-            ivPropic = (ImageView) itemView.findViewById(R.id.ivProPic);
+            ivPost = (ImageView) itemView.findViewById(R.id.ivGrid);
             itemView.setOnClickListener(this);
         }
 
@@ -137,5 +116,4 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         posts.addAll(list);
         notifyDataSetChanged();
     }
-
 }

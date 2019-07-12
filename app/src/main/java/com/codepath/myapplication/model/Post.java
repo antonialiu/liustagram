@@ -12,10 +12,10 @@ import org.parceler.Parcel;
 @Parcel(analyze = Post.class)
 public class Post extends ParseObject {
 
-    private static final String KEY_DESCRIPTION = "description";
-    private static final String KEY_IMAGE = "image";
-    private static final String KEY_USER = "user";
-    private static final String DATE = "createdAt";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_USER = "user";
+    public static final String KEY_CREATED_AT = "createdAt";
 
     public Post() {}
 
@@ -41,6 +41,14 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    public ParseFile getPropic() {
+        return (ParseFile) this.getUser().get("propic");
+    }
+
+    public void setPropic(ParseFile image) {
+        this.getUser().put("propic", image);
     }
 
 /*
